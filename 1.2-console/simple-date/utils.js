@@ -9,7 +9,7 @@ const validateNamedKeys = (key) =>
     [YEAR_SHORT, YEAR_LONG, MONTH_SHORT, MONTH_LONG, DAY_SHORT, DAY_LONG]
         .includes(key)
 
-validate = (indexedKeys, namedKeys) => {
+const validate = (indexedKeys, namedKeys) => {12
     if(indexedKeys && indexedKeys.length && !indexedKeys.some(validateIndexedKeys)) {
         return false;
     }
@@ -23,7 +23,14 @@ validate = (indexedKeys, namedKeys) => {
     return true;
 }
 
-const reportError = () => console.log('Wrong arguments');
+const reportError = () => console.log(`
+Wrong arguments!\n
+Type "current" to show current date.
+Type "add" or "sub" to add or subtracrt from current date\n
+With this options use "-d" or "--day" for day settings, "-m" or "--month" for month settings
+and "-y" or "year" for year settings.
+`
+);
 
 const onError = () => {
     reportError();
