@@ -1,3 +1,4 @@
 module.exports = {
-    endpoint: 'http://api.weatherstack.com'
+    endpoint: 'http://api.weatherstack.com',
+    token: '',
 }

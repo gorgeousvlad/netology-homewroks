@@ -1,5 +1,5 @@
-const ACCESS_KEY = process.env.ACCESS_KEY;
-const {endpoint} = require('./config');
+const {endpoint,token} = require('./config');
+const ACCESS_KEY = process.env.ACCESS_KEY || token;
 
 const getActionUrl = (action, params) => {
     const url = new URL(action, endpoint);
