@@ -1,0 +1,23 @@
+{
+  "name": "weather-forecast",
+  "version": "1.0.0",
+  "description": "Console number guess util",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node -r dotenv/config index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "weather-forecast": "index.js"
+  },
+  "dependencies": {
+    "yargs": "^17.2.1"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "eslint": "^8.3.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1"
+  }
+}
