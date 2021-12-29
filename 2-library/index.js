@@ -41,7 +41,6 @@ app.get('/api/books/:id', (req, res) => {
 
 app.post('/api/books/', (req, res) => {
     const {books} = store;
-    console.log('__BODY', req.body);
     const book = new Book(filterReqFields(req.body));
     books.push(book);
 
