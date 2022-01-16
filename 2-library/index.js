@@ -11,7 +11,7 @@ const userRouter = require('./routes/user');
 const app = express();
 
 app.use(cors());
-// app.use(loggerMiddleware);
+app.use(loggerMiddleware);
 
 app.use('/public', express.static(__dirname+"/public"));
 
@@ -19,7 +19,7 @@ app.use('/', indexRouter);
 app.use('/api/books', booksRouter);
 app.use('/api/user', userRouter);
 
-// app.use(errorMiddleware);
+app.use(errorMiddleware);
 
 const PORT = process.env.PORT || 3000;
 
