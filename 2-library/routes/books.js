@@ -11,7 +11,6 @@ const store = {
     store.books.push(new Book({title: `book ${el}`, description: `book ${el} description`}))
 });
 
-
 router.get('/', (req, res) => {
     const {books} = store;
     res.json(books);
@@ -71,11 +70,18 @@ router.delete('/:id', (req, res) => {
     }
 });
 
-// загрузка файлов
-router.post('/upload-img', fileMiddleware.single('cover-img'), (req, res) => {
-    if (req.file) {
+router.post('/:id/upload', fileMiddleware.single('fileBook'), (req, res) => {
+    const {books} = store;
+    const {id} = req.params;
+    const idx = books.findIndex(el => el.id === id);
+
+    if (req.file && idx !== -1) {
         const {path} = req.file;
-        console.log(path);
+
+        books[idx] = {
+            ...books[idx],
+            fileBook: path,
+        };
 
         res.json(path);
     } else {
@@ -83,12 +89,20 @@ router.post('/upload-img', fileMiddleware.single('cover-img'), (req, res) => {
     }
 });
 
-router.get('/:id/download-img', (req, res) => {
-    res.download(__dirname+'/../public/img/2020-12-07-cover.png', 'cover.png', err=>{
-        if (err){
-            res.status(404).json();
-        }
-    });
+router.get('/:id/download', (req, res) => {
+    const {books} = store;
+    const {id} = req.params;
+    const idx = books.findIndex(el => el.id === id);
+
+    if (idx !== -1 &&  books[idx].fileBook) {
+        res.download(books[idx].fileBook, `${id}.png`, err=>{
+            if (err){
+                res.status(404).json();
+            }
+        });
+    } else {
+        res.json(`book ${id} file not found | not found`);;
+    }
 });
 
 module.exports = router;
