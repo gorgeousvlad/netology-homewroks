@@ -8,6 +8,7 @@ const bookFields = [
   'favorite',
   'fileCover',
   'fileName',
+  'fileBook'
 ];
 
 function validateFieldName(name) {
