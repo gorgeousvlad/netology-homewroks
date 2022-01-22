@@ -50,24 +50,6 @@ router.get('/:id', (req, res) => {
     }
 });
 
-router.put('/:id', (req, res) => {
-    const {books} = store;
-    const {id} = req.params;
-    const idx = books.findIndex(el => el.id === id);
-
-    if (idx !== -1) {
-        books[idx] = {
-            ...books[idx],
-            ...filterReqFields(req.body || {})
-        };
-
-        res.json(books[idx]);
-    } else {
-        res.status(404);
-        res.json(`books ${id}| not found`);
-    }
-});
-
 router.get('/update/:id', (req, res) => {
     const {books} = store;
     const {id} = req.params;
