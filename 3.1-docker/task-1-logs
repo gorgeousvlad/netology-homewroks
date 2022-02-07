@@ -1,0 +1,98 @@
+$ docker pull busybox >> task-1-logs
+
+Using default tag: latest
+latest: Pulling from library/busybox
+009932687766: Pulling fs layer
+009932687766: Verifying Checksum
+009932687766: Download complete
+009932687766: Pull complete
+Digest: sha256:afcc7f1ac1b49db317a7196c902e61c6c3c4607d63599ee1a82d702d249a0ccb
+Status: Downloaded newer image for busybox:latest
+docker.io/library/busybox:latest
+
+
+$ docker run --name pinger -it busybox ping -c 7 netology
+.ru
+PING netology.ru (104.22.40.171): 56 data bytes
+64 bytes from 104.22.40.171: seq=0 ttl=37 time=9.349 ms
+64 bytes from 104.22.40.171: seq=1 ttl=37 time=6.436 ms
+64 bytes from 104.22.40.171: seq=2 ttl=37 time=8.794 ms
+64 bytes from 104.22.40.171: seq=3 ttl=37 time=14.521 ms
+64 bytes from 104.22.40.171: seq=4 ttl=37 time=27.861 ms
+64 bytes from 104.22.40.171: seq=5 ttl=37 time=18.417 ms
+64 bytes from 104.22.40.171: seq=6 ttl=37 time=12.996 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 6.436/14.053/27.861 ms
+
+$ docker ps -a
+
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                     PORTS     NAMES
+0d089a560f85   busybox   "ping -c 7 netology.…"   4 minutes ago   Exited (0) 4 minutes ago             pinger
+
+$ docker logs -t pinger
+
+2022-02-07T15:46:04.735556942Z PING netology.ru (104.22.40.171): 56 data bytes
+2022-02-07T15:46:04.745148150Z 64 bytes from 104.22.40.171: seq=0 ttl=37 time=9.349 ms
+2022-02-07T15:46:05.742837526Z 64 bytes from 104.22.40.171: seq=1 ttl=37 time=6.436 ms
+2022-02-07T15:46:06.750614316Z 64 bytes from 104.22.40.171: seq=2 ttl=37 time=8.794 ms
+2022-02-07T15:46:07.758937098Z 64 bytes from 104.22.40.171: seq=3 ttl=37 time=14.521 ms
+2022-02-07T15:46:08.774150259Z 64 bytes from 104.22.40.171: seq=4 ttl=37 time=27.861 ms
+2022-02-07T15:46:09.769215468Z 64 bytes from 104.22.40.171: seq=5 ttl=37 time=18.417 ms
+2022-02-07T15:46:10.764629373Z 64 bytes from 104.22.40.171: seq=6 ttl=37 time=12.996 ms
+2022-02-07T15:46:10.764823757Z 
+2022-02-07T15:46:10.764838497Z --- netology.ru ping statistics ---
+2022-02-07T15:46:10.764845278Z 7 packets transmitted, 7 packets received, 0% packet loss
+2022-02-07T15:46:10.764851765Z round-trip min/avg/max = 6.436/14.053/27.861 ms
+
+$ docker start pinger
+
+pinger
+
+$ docker ps -a
+
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                      PORTS     NAMES
+0d089a560f85   busybox   "ping -c 7 netology.…"   6 minutes ago   Exited (0) 17 seconds ago             pinger
+
+$ docker logs -t pinger
+
+2022-02-07T15:46:04.735556942Z PING netology.ru (104.22.40.171): 56 data bytes
+2022-02-07T15:46:04.745148150Z 64 bytes from 104.22.40.171: seq=0 ttl=37 time=9.349 ms
+2022-02-07T15:46:05.742837526Z 64 bytes from 104.22.40.171: seq=1 ttl=37 time=6.436 ms
+2022-02-07T15:46:06.750614316Z 64 bytes from 104.22.40.171: seq=2 ttl=37 time=8.794 ms
+2022-02-07T15:46:07.758937098Z 64 bytes from 104.22.40.171: seq=3 ttl=37 time=14.521 ms
+2022-02-07T15:46:08.774150259Z 64 bytes from 104.22.40.171: seq=4 ttl=37 time=27.861 ms
+2022-02-07T15:46:09.769215468Z 64 bytes from 104.22.40.171: seq=5 ttl=37 time=18.417 ms
+2022-02-07T15:46:10.764629373Z 64 bytes from 104.22.40.171: seq=6 ttl=37 time=12.996 ms
+2022-02-07T15:46:10.764823757Z 
+2022-02-07T15:46:10.764838497Z --- netology.ru ping statistics ---
+2022-02-07T15:46:10.764845278Z 7 packets transmitted, 7 packets received, 0% packet loss
+2022-02-07T15:46:10.764851765Z round-trip min/avg/max = 6.436/14.053/27.861 ms
+2022-02-07T15:52:37.804064677Z PING netology.ru (104.22.41.171): 56 data bytes
+2022-02-07T15:52:37.821007134Z 64 bytes from 104.22.41.171: seq=0 ttl=37 time=16.811 ms
+2022-02-07T15:52:38.817945970Z 64 bytes from 104.22.41.171: seq=1 ttl=37 time=13.007 ms
+2022-02-07T15:52:39.814842861Z 64 bytes from 104.22.41.171: seq=2 ttl=37 time=8.613 ms
+2022-02-07T15:52:40.815637734Z 64 bytes from 104.22.41.171: seq=3 ttl=37 time=9.160 ms
+2022-02-07T15:52:41.798398050Z 64 bytes from 104.22.41.171: seq=4 ttl=37 time=12.578 ms
+2022-02-07T15:52:42.793665766Z 64 bytes from 104.22.41.171: seq=5 ttl=37 time=7.272 ms
+2022-02-07T15:52:43.831588139Z 64 bytes from 104.22.41.171: seq=6 ttl=37 time=42.937 ms
+2022-02-07T15:52:43.831635467Z 
+2022-02-07T15:52:43.831643229Z --- netology.ru ping statistics ---
+2022-02-07T15:52:43.831648788Z 7 packets transmitted, 7 packets received, 0% packet loss
+2022-02-07T15:52:43.831654067Z round-trip min/avg/max = 7.272/15.768/42.937 ms
+
+$ docker logs -t pinger | grep "PING netology.ru" | wc -l
+       2
+
+$ docker logs -t pinger | grep "64 bytes" | wc -l
+      14
+
+$ docker rm pinger
+pinger
+
+$ docker rmi busybox
+Untagged: busybox:latest
+Untagged: busybox@sha256:afcc7f1ac1b49db317a7196c902e61c6c3c4607d63599ee1a82d702d249a0ccb
+Deleted: sha256:ec3f0931a6e6b6855d76b2d7b0be30e81860baccd891b2e243280bf1cd8ad710
+Deleted: sha256:d31505fd5050f6b96ca3268d1db58fc91ae561ddf14eaabc41d63ea2ef8c1c6d
